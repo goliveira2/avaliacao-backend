@@ -1,0 +1,46 @@
+﻿<div class="container">
+    <br />
+    <h4>Estoque de livros</h4>
+    <div ng-controller="livrosCtrl">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" required ng-model="livro.Titulo" class="form-control" placeholder="Ex: Harry Potter" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" required ng-model="livro.Autor" class="form-control" placeholder="Ex: JK Rowling" />
+                </div>
+                <div class="col-md-2 text-right">
+                    <a href="#" class="btn btn-primary" ng-click="IncluiLivro(livro)" ng-disabled="!livro.Titulo || !livro.Autor"
+                       data-toggle="tooltip" title="Incluir">Inserir</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="#" class="btn btn-success" ng-click="AlteraLivro(livro)" ng-disabled="!livro.Titulo || !livro.Autor"
+                       data-toggle="tooltip" title="Alterar">Atualizar</a>
+                </div>
+            </div>
+        </div>
+        <input type="text" ng-model="buscar" class="form-control" placeholder="Buscar Livro...">
+        <br />
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tr>
+                    <th class="text-center">Titulo do Livro</th>
+                    <th class="text-center">Autor do Livro</th>
+                    <th class="text-center">Selecionar linha</th>
+                    <th class="text-center">Deletar linha</th>
+                </tr>
+                <tr ng-repeat="livro in livros | orderBy:'Titulo'| filter:buscar ">
+                    <td class="text-center"> {{livro.Titulo}} </td>
+                    <td class="text-center"> {{livro.Autor}} </td>
+                    <td class="text-center">
+                        <button class="btn btn-success" ng-click="SelecionaLivro(livro)" data-toggle="tooltip" title="Clique para Selecionar o Livro">Selecionar</button>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-danger" ng-click="DeletaLivro(livro)" data-toggle="tooltip" title="Clique para Deletar o Livro">Deletar</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
